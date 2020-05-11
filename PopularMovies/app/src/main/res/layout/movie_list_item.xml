@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="center_horizontal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnWidth="200dp"
-    android:numColumns="auto_fit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="10dp"
+    android:layout_margin="12dp"
+    android:id="@+id/movie_cv"
     xmlns:card_view="http://schemas.android.com/apk/res-auto">
-    <androidx.cardview.widget.CardView
-        android:id="@+id/movie_cv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="10dp"
-        android:layout_margin="12dp"
-        >
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,5 +23,4 @@
             android:textSize="16sp"
             android:text="Movie Name"/>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</GridView>
+</androidx.cardview.widget.CardView>

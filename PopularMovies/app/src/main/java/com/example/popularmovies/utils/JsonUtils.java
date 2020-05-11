@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.popularmovies.model.Movie;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -35,21 +36,28 @@ public class JsonUtils {
         Movie movie = new Movie();
         try {
             JSONObject movieBaseJson = new JSONObject(json);
-            JSONObject movieDetails = movieBaseJson.getJSONObject(MOVIE_DETAILS);
-            String movieName = movieDetails.getString(NAME);
-            movie.setMovieName(movieName);
-            String moviePoster = movieDetails.getString(POSTER_PATH);
-            movie.setMoviePoster(moviePoster);
-            String overview = movieDetails.getString(OVERVIEW);
-            movie.setOverview(overview);
-            String release_date = movieDetails.getString(RELEASE_DATE);
-            movie.setReleaseDate(release_date);
-            float vote_average = movieDetails.getLong(VOTE_AVERAGE);
-            movie.setVoteAverage(vote_average);
+            JSONArray results = movieBaseJson.getJSONArray("results");
+
+            for(int i =0;i<results.length();i++) {
+                JSONObject currentMovie = results.getJSONObject(i);
+                String movieName = currentMovie.getString(NAME);
+                movie.setMovieName(movieName);
+                String moviePoster = currentMovie.getString(POSTER_PATH);
+                movie.setMoviePoster(moviePoster);
+                String overview = currentMovie.getString(OVERVIEW);
+                movie.setOverview(overview);
+                String release_date = currentMovie.getString(RELEASE_DATE);
+                movie.setReleaseDate(release_date);
+                float vote_average = currentMovie.getLong(VOTE_AVERAGE);
+                movie.setVoteAverage(vote_average);
+
+                movieList.add(movie);
+            }
         } catch (JSONException e) {
+            Log.e("JsonException", "Problem receiving Json results: ", e);
             e.printStackTrace();
         }
-        movieList.add(movie);
+
         return movieList;
     }
 
@@ -57,12 +65,13 @@ public class JsonUtils {
         URL url = null;
         Uri baseUri = Uri.parse(stringUrl + prefrences);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        String api_key = "<Your Api key>";
+        String api_key = "<Your api key>";
         uriBuilder.appendQueryParameter("api_key", api_key)
                 .appendQueryParameter("language", "en-US")
                 .build();
         try {
             url = new URL(uriBuilder.toString());
+            Log.e("MainActivity", "building url "+url);
 
         } catch (MalformedURLException e) {
             Log.e("MainActivity", "problem building url ", e);

@@ -1,6 +1,7 @@
 package com.example.popularmovies;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,15 +30,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public MovieViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         int layoutIdForListItem = R.layout.movie_list_item;
-        GridView v = (GridView) LayoutInflater.from(mContext).inflate(layoutIdForListItem,viewGroup,false);
+        View v = LayoutInflater.from(mContext).inflate(layoutIdForListItem,viewGroup,false);
         return new MovieViewHolder(v);
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
         Movie currentMovie = mMovieData.get(position);
         holder.mMoviename.setText(currentMovie.getMovieName());
+        Log.e("Movie Name",""+currentMovie.getMovieName());
         Picasso.with(mContext)
                 .load(currentMovie.getMoviePoster())
                 .fit()
@@ -50,6 +51,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
     @Override
     public int getItemCount() {
         if(mMovieData == null ||mMovieData.size() == 0){ return -1;}
+        Log.e("size of data",""+mMovieData.size());
         return mMovieData.size();
     }
 
