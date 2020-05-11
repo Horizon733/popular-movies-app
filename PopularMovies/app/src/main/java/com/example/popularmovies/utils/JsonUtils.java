@@ -57,7 +57,7 @@ public class JsonUtils {
         URL url = null;
         Uri baseUri = Uri.parse(stringUrl + prefrences);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        String api_key = "8732a1a334f8c7b9de6b5f76160cf31b";
+        String api_key = "<Your Api key>";
         uriBuilder.appendQueryParameter("api_key", api_key)
                 .appendQueryParameter("language", "en-US")
                 .build();
