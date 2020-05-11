@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context=".DetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent">
+
+
+                <ImageView
+                    android:id="@+id/poster_back_drop_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop" />
+
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="100dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true">
+
+                        <ImageView
+                            android:id="@+id/poster_iv"
+                            android:layout_width="150dp"
+                            android:layout_height="200dp"
+                            android:layout_gravity="center"
+                            android:padding="3dp"
+
+                            />
+                    </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/movie_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="172dp"
+                    android:layout_marginTop="200dp"
+                    android:layout_marginRight="-172dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="32sp"
+                    android:maxLines="1"
+                    tools:text="MovieName" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="172dp"
+                    android:layout_marginTop="250dp"
+                    android:layout_marginRight="-172dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    android:maxLines="1"
+                   android:text="Ratings: " />
+
+                <TextView
+                    android:id="@+id/movie_ratings_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="265dp"
+                    android:layout_marginTop="250dp"
+                    android:layout_marginRight="115dp"
+                    android:maxLines="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp"
+                    tools:text="7.5" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="172dp"
+                    android:layout_marginTop="280dp"
+                    android:layout_marginRight="-172dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    android:maxLines="1"
+                    android:text="Release Date: " />
+
+                <TextView
+                    android:id="@+id/movie_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="296dp"
+                    android:layout_marginTop="280dp"
+                    android:layout_marginRight="91dp"
+                    android:maxLines="1"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp"
+                    tools:text="2020-05-07" />
+            </RelativeLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Movie Plot:"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/movie_plot_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:layout_alignParentBottom="true"
+                    android:textSize="22sp" />
+</LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

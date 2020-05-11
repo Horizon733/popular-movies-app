@@ -1,41 +1,6 @@
 <resources>
     <string name="app_name">Popular Movies</string>
-
-    <string-array name="results">
-        <item>
-      \"movie\":{
-         \"popularity\":458.421,
-         \"vote_count\":3295,
-         \"poster_path\":\"\/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg",
-         \"title\":\"Ad Astra\",
-         \"vote_average\":6,
-         \"overview\":\"The near future, a time when both hope and hardships drive humanity to look to the stars and beyond. While a mysterious phenomenon menaces to destroy life on planet Earth, astronaut Roy McBride undertakes a mission across the immensity of space and its many perils touncover the truth about a lost expedition that decades before boldly faced emptiness and silence in search of the unknown.\",
-         \"release_date\":\"2019-09-17\"
-            }</item>
-        <item>
-      {
-         \"poster_path\":\"\/wlfDxbGEsW58vGhFljKkcR5IxDj.jpg\",
-         \"title\":\"Extraction\",
-         \"vote_average\":7.5,
-         \"overview\":\"Tyler Rake, a fearless mercenary who offers his services on the black market, embarks on a dangerous mission when he is hired to rescue the kidnapped son of a Mumbai crime lord…\",
-         \"release_date\":\"2020-04-24\"
-            }</item>
-        <item>
-      {
-         \"poster_path\":\"\/33VdppGbeNxICrFUtW2WpGHvfYc.jpg\",
-         \"title\":\"The Call of the Wild\",
-         \"vote_average\":7.3,
-         \"overview\":\"Buck is a big-hearted dog whose blissful domestic life is turned upside down when he is suddenly uprooted from his California home and transplanted to the exotic wilds of the Yukon during the Gold Rush of the 1890s. As the newest rookie on a mail delivery dog sled team—and later its leader—Buck experiences the adventure of a lifetime, ultimately finding his true place in the world and becoming his own master.\",
-         \"release_date\":\"2020-02-19\"
-            }</item>
-        <item>
-      {
-         \"poster_path\":\"\/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg\",
-         \"title":\"Bloodshot\",
-         \"vote_average\":7.1,
-         \"overview\":\"After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought.\",
-         \"release_date\":\"2020-03-05\"
-           }
-        </item>
-    </string-array>
+<string name="no_connection">No Internet Connection</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="popular">Popular</string>
 </resources>

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,9 +20,14 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     List<Movie> mMovieData;
     Context mContext;
+    private final MovieAdapterOnClickHandler mClickHandler;
 
-    public MovieAdapter(Context context, List<Movie> movies){
+    public interface MovieAdapterOnClickHandler {
+        void onClick(int position);
+    }
+    public MovieAdapter(Context context, MovieAdapterOnClickHandler clickHandler ,List<Movie> movies){
         mContext = context;
+        mClickHandler = clickHandler;
         mMovieData = movies;
     }
     @NonNull
@@ -42,20 +46,21 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         Picasso.with(mContext)
                 .load(currentMovie.getMoviePoster())
                 .fit()
-                .error(R.mipmap.ic_launcher_round)
-                .placeholder(R.mipmap.ic_launcher_round)
+                .error(R.drawable.loading)
+                .placeholder(R.drawable.loading)
                 .into(holder.mMoviePoster);
+
 
     }
 
     @Override
     public int getItemCount() {
         if(mMovieData == null ||mMovieData.size() == 0){ return -1;}
-        Log.e("size of data",""+mMovieData.size());
+
         return mMovieData.size();
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder{
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public CardView mParentlayout;
         public ImageView mMoviePoster;
@@ -66,7 +71,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
             mParentlayout = itemView.findViewById(R.id.movie_cv);
             mMoviename = itemView.findViewById(R.id.movie_name);
             mMoviePoster = itemView.findViewById(R.id.movie_poster);
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            int adapterposition = getAdapterPosition();
+            mClickHandler.onClick(adapterposition);
         }
     }
 

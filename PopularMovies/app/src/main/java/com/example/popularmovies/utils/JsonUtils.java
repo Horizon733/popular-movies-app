@@ -21,37 +21,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
-    private static final String MOVIE_DETAILS = "movie";
+    private static final String MOVIE_DETAILS = "results";
     private static final String NAME = "title";
     private static final String VOTE_AVERAGE = "vote_average";
     private static final String RELEASE_DATE = "release_date";
     private static final String OVERVIEW = "overview";
     private static final String POSTER_PATH = "poster_path";
+    private static final String BACK_DROP_POSTER = "backdrop_path";
 
     public static List<Movie> parseMovieJson(String json) {
-        List<Movie> movieList = new ArrayList<>();
+        ArrayList<Movie> movieList = new ArrayList<Movie>();
         if (json == null || json.isEmpty()) {
             return null;
         }
-        Movie movie = new Movie();
         try {
             JSONObject movieBaseJson = new JSONObject(json);
-            JSONArray results = movieBaseJson.getJSONArray("results");
+            JSONArray results = movieBaseJson.getJSONArray(MOVIE_DETAILS);
 
             for(int i =0;i<results.length();i++) {
                 JSONObject currentMovie = results.getJSONObject(i);
                 String movieName = currentMovie.getString(NAME);
-                movie.setMovieName(movieName);
                 String moviePoster = currentMovie.getString(POSTER_PATH);
-                movie.setMoviePoster(moviePoster);
                 String overview = currentMovie.getString(OVERVIEW);
-                movie.setOverview(overview);
                 String release_date = currentMovie.getString(RELEASE_DATE);
-                movie.setReleaseDate(release_date);
-                float vote_average = currentMovie.getLong(VOTE_AVERAGE);
-                movie.setVoteAverage(vote_average);
+                Double vote_average = currentMovie.getDouble(VOTE_AVERAGE);
+                String backDropPoster = currentMovie.getString(BACK_DROP_POSTER);
 
-                movieList.add(movie);
+
+                movieList.add(new Movie(movieName,moviePoster,overview,release_date,vote_average,backDropPoster));
             }
         } catch (JSONException e) {
             Log.e("JsonException", "Problem receiving Json results: ", e);
@@ -65,7 +62,7 @@ public class JsonUtils {
         URL url = null;
         Uri baseUri = Uri.parse(stringUrl + prefrences);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        String api_key = "<Your api key>";
+        String api_key = "<your api>";
         uriBuilder.appendQueryParameter("api_key", api_key)
                 .appendQueryParameter("language", "en-US")
                 .build();
