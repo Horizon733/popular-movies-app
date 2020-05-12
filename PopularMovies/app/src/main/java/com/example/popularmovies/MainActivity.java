@@ -61,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.Movi
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             new FetchDataAsyncTask().execute(prefrences);
+             LinearLayout noConnection = findViewById(R.id.empty_view);
+            noConnection.setVisibility(View.GONE);
         } else {
             View loadingIndicator = findViewById(R.id.progress);
             loadingIndicator.setVisibility(View.GONE);
