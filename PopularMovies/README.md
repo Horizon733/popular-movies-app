@@ -5,3 +5,5 @@ The screenshots are as follows<br>
 <img width=40% src="https://github.com/Horizon733/popular-movies-s-1/blob/master/PopularMovies/screenshots/s1.png"><br>
 ### Detail Activity<br>
 <img width=40% src="https://github.com/Horizon733/popular-movies-s-1/blob/master/PopularMovies/screenshots/s2.png">
+### No Internety<br>
+<img width=40% src="https://github.com/Horizon733/popular-movies-s-1/blob/master/PopularMovies/screenshots/s3.png">
