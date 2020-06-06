@@ -1,16 +1,18 @@
 package com.example.popularmovies.model;
 
 public class Movie {
+    private int mMovieId;
     private String mBackDropImage;
     private String mMovieName;
     private String mMoviePoster;
     private String mOverview;
     private String mReleaseDate;
     private Double mVoteAverage;
-    private final String POSTER_URL = "https://image.tmdb.org/t/p/w185";
+    public static final String POSTER_URL = "https://image.tmdb.org/t/p/w185";
     public Movie(){
     }
-    public Movie(String movieName,String moviePoster,String overview,String releaseDate,Double voteAverage,String backDropImage){
+    public Movie(int movieId,String movieName,String moviePoster,String overview,String releaseDate,Double voteAverage,String backDropImage){
+        mMovieId = movieId;
         mMovieName = movieName;
         mMoviePoster = moviePoster;
         mOverview = overview;
@@ -26,6 +28,6 @@ public class Movie {
     public String getReleaseDate(){return mReleaseDate;}
     public String getVoteAverage(){return Double.toString(mVoteAverage);}
 
-
+public int getMovieId(){return mMovieId;}
     public String getBackDropImage(){return POSTER_URL+mBackDropImage;}
 }

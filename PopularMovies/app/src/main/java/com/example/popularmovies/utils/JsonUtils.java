@@ -4,6 +4,8 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.example.popularmovies.model.Movie;
+import com.example.popularmovies.model.Reviews;
+import com.example.popularmovies.model.YoutubeTrailer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +25,7 @@ import java.util.List;
 public class JsonUtils {
     private static final String MOVIE_DETAILS = "results";
     private static final String NAME = "title";
+    private static final String MOVIE_ID = "id";
     private static final String VOTE_AVERAGE = "vote_average";
     private static final String RELEASE_DATE = "release_date";
     private static final String OVERVIEW = "overview";
@@ -38,8 +41,9 @@ public class JsonUtils {
             JSONObject movieBaseJson = new JSONObject(json);
             JSONArray results = movieBaseJson.getJSONArray(MOVIE_DETAILS);
 
-            for(int i =0;i<results.length();i++) {
+            for (int i = 0; i < results.length(); i++) {
                 JSONObject currentMovie = results.getJSONObject(i);
+                int movieId = currentMovie.getInt(MOVIE_ID);
                 String movieName = currentMovie.getString(NAME);
                 String moviePoster = currentMovie.getString(POSTER_PATH);
                 String overview = currentMovie.getString(OVERVIEW);
@@ -47,8 +51,7 @@ public class JsonUtils {
                 Double vote_average = currentMovie.getDouble(VOTE_AVERAGE);
                 String backDropPoster = currentMovie.getString(BACK_DROP_POSTER);
 
-
-                movieList.add(new Movie(movieName,moviePoster,overview,release_date,vote_average,backDropPoster));
+                movieList.add(new Movie(movieId, movieName, moviePoster, overview, release_date, vote_average, backDropPoster));
             }
         } catch (JSONException e) {
             Log.e("JsonException", "Problem receiving Json results: ", e);
@@ -58,17 +61,68 @@ public class JsonUtils {
         return movieList;
     }
 
-    private static URL createUrl(String stringUrl, String prefrences) {
+    public static List<YoutubeTrailer> parseYoutubeLinks(String json) {
+        List<YoutubeTrailer> trailers = new ArrayList<>();
+        if (json == null || json.isEmpty()) {
+            return null;
+        }
+        try {
+            JSONObject trailerBaseJson = new JSONObject(json);
+            JSONArray results = trailerBaseJson.getJSONArray(MOVIE_DETAILS);
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject currentTrailer = results.getJSONObject(i);
+                String trailerKey = currentTrailer.getString("key");
+                String trailerTitle = currentTrailer.getString("name");
+                trailers.add(new YoutubeTrailer(trailerKey, trailerTitle));
+                Log.d("title", "" + trailerTitle);
+            }
+        } catch (JSONException e) {
+            Log.e("JsonException Trailers", "Problem receiving Json results: ", e);
+            e.printStackTrace();
+        }
+        return trailers;
+    }
+
+    public static List<Reviews> parseReviews(String json) {
+        List<Reviews> reviews = new ArrayList<>();
+        if (json == null || json.isEmpty()) {
+            return null;
+        }
+        try {
+            JSONObject reviewsBaseJson = new JSONObject(json);
+            JSONArray results = reviewsBaseJson.getJSONArray(MOVIE_DETAILS);
+            for (int i = 0; i < results.length(); i++) {
+                JSONObject currentReview = results.getJSONObject(i);
+                String author = currentReview.getString("author");
+                String content = currentReview.getString("content");
+                String url = currentReview.getString("url");
+                reviews.add(new Reviews(author, content, url));
+                Log.d("author", "" + author);
+            }
+        } catch (JSONException e) {
+            Log.e("JsonException Reviews", "Problem receiving Json results: ", e);
+            e.printStackTrace();
+        }
+        return reviews;
+    }
+
+    public static URL createUrl(String stringUrl, String prefrences) {
         URL url = null;
-        Uri baseUri = Uri.parse(stringUrl + prefrences);
+        Uri baseUri;
+        if (prefrences == null) {
+            baseUri = Uri.parse(stringUrl);
+        } else {
+            baseUri = Uri.parse(stringUrl + prefrences);
+        }
         Uri.Builder uriBuilder = baseUri.buildUpon();
-        String api_key = "<your api>";
+        String api_key = "8732a1a334f8c7b9de6b5f76160cf31b";
+        //String api_key = "<api-key>";
         uriBuilder.appendQueryParameter("api_key", api_key)
                 .appendQueryParameter("language", "en-US")
                 .build();
         try {
             url = new URL(uriBuilder.toString());
-            Log.e("MainActivity", "building url "+url);
+            Log.e("MainActivity", "building url " + url);
 
         } catch (MalformedURLException e) {
             Log.e("MainActivity", "problem building url ", e);
@@ -76,7 +130,7 @@ public class JsonUtils {
         return url;
     }
 
-    private static String makeHttpRequest(URL url) throws IOException {
+    public static String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
         if (url == null) {
             return jsonResponse;
@@ -145,5 +199,6 @@ public class JsonUtils {
         // Return the list of {@link Earthquake}s
         return movies;
     }
+
 
 }

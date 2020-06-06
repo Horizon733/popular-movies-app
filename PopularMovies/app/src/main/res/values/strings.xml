@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">Popular Movies</string>
-<string name="no_connection">No Internet Connection</string>
+    <string name="no_connection">No Internet Connection</string>
     <string name="top_rated">Top Rated</string>
     <string name="popular">Popular</string>
+    <string name="favorites">Favorites</string>
+    <string name="trailers">Trailers</string>
+    <string name="reviews">Reviews</string>
+    <string name="popular_movie">popular</string>
+    <string name="top_rated_movie">top_rated</string>
 </resources>
